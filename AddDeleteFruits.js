@@ -1,11 +1,18 @@
 const fruit = document.getElementsByClassName('fruit');
 for(let i=0;i<fruit.length;i++){
+   
+     const input = document.createElement('input');
+     input.style.fontFamily = 'italic';
+
+
     const edtbtn = document.createElement('button');
     const edttxt = document.createTextNode('Edit');
     edtbtn.appendChild(edttxt);
 
     fruit[i].appendChild(edtbtn);
+    fruit[i].appendChild(input);
     edtbtn.className='edit-btn';
+    input.className='description';
 }
 const form = document.querySelector('form');
 const fruits = document.querySelector('.fruits');
@@ -43,4 +50,32 @@ fruits.addEventListener('click',function(event){
         const fruitDel = event.target.parentElement;
        fruits.removeChild(fruitDel);
     }
+})
+
+
+const filter = document.getElementById('filter');
+const fruitItems = document.getElementsByClassName('fruit');
+
+filter.addEventListener('keyup',function(event){
+    
+    const textEntered = event.target.value.toLowerCase();
+    
+    for(let i=0;i<fruitItems.length;i++){
+       const fruitStr = fruitItems[i].firstChild.textContent.toLowerCase();
+
+       if(fruitStr.indexOf(textEntered)===-1){
+          fruitItems[i].style.display='none';
+       }
+       else{
+         fruitItems[i].style.display='flex';
+       }
+
+
+
+    }
+
+
+
+
+
 })
